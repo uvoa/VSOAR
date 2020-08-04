@@ -17,7 +17,7 @@ mc.innerHTML = `<div id="LEFT_PANEL"> <div></div>
 }
 function populate(){
   for(i=0;i<IBDB.length;i++){
-    ATI(`<div class="block"><header><img src="`+IBDB[i].logoURL+`"><h2>`+IBDB[i].ibTitle+`</h2></header></div>`);
+    ATI(`<div class="IB_ITEM"><header><img src="`+IBDB[i].logoURL+`"><h2>`+IBDB[i].ibTitle+`</h2></header></div>`);
   }
 }
 function ATI(htmlLibretto){
