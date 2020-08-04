@@ -12,6 +12,7 @@ mc.innerHTML = `<div id="LEFT_PANEL"> <div></div>
 </div><div id="RIGHT_PANEL"></div>`;
   document.getElementById('RIGHT_PANEL').innerHTML = ` <div class="vp special" id="INDEX"></div> `;
   popu = document.getElementById('INDEX');
+  popu.innerHTML = '<h1>Index</h1>'
   populate();
 }
 function populate(){
