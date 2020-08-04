@@ -1,5 +1,5 @@
 var TABS = [];
-var IBDB;loadBBSIBDB();
+var IBDB = [];loadBBSIBDB();
 prepGUI();
 function prepGUI(){
   var popu;
