@@ -20,7 +20,7 @@ function populate(){
     var boards = Object.keys(IBDB[i]['boards']);
     var boardLinks = "";
     for(ia=0;ia<boards.length;ia++){
-      boardLinks = boardLinks + ( "<div class='board_lnk' onclick='openTab(" + IBDB[i].short+"/"+boards[ia]+")'>"+boards[ia]+"</div>" )
+      boardLinks = boardLinks + ( `<div class='board_lnk' onclick='openTab("` + IBDB[i].short+`/`+boards[ia]+`")'>`+boards[ia]+`</div>` )
     }
     ATI(`<div class="IB_ITEM"><header><img src="`+IBDB[i].logoURL+`"><h2>`+IBDB[i].ibTitle+`</h2></header>`+boardLinks+`</div>`);
   }
