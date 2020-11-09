@@ -13,8 +13,12 @@
     <style>
         * {padding: 0px;margin: 0px;}
         iframe {width: 100%;min-height: 100vh;position: absolute;top: 0px;left: 0px;right: 0px;height:140%;
-        transform: scale(2) translateX(60%);}
+        transform: scale(2) translateX(40%);}
         html, body {overflow: hidden;width: 100vw;height: 100vh;position: relative;}
+        @media(max-width:720px){
+            iframe {width: 100%;min-height: 100vh;position: absolute;top: 0px;left: 0px;right: 0px;height:140%;
+            transform: scale(2) translateX(40%);}
+        }
     </style>
     <script>
         target = document.getElementsByTagName('iframe')[0];
