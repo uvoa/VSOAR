@@ -22,6 +22,8 @@
     </style>
     <script>
         target = document.getElementsByTagName('iframe')[0];
+        console.log(window.innerHeight > 720);
+        console.log(window.innerHeight);
         if(window.innerHeight > 720){
             target.style.top = "-20vw";
             target.style.bottom = "-10%";
