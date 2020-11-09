@@ -12,31 +12,28 @@
     <iframe src="https://tv.bienvenidoainternet.org" title="oks"></iframe>
     <style>
         * {padding: 0px;margin: 0px;}
-        iframe {width: 170%;min-height: 100vh;position: absolute;top: -28vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-        transform: scale(.9) translateX(-10vw);}
+        iframe {width: calc(100% + 400px);min-height: 100vh;position: absolute;top: -160px;left: 0px;bottom: 0vh;height:170vh;
+            transform: scale(1) translateX(0vw);transform-origin: inherit;}
         html, body {overflow: hidden;width: 100vw;height: 100vh;position: relative;}
-
-
-
         @media (max-width:971px) and (min-width:842px){
             iframe {width: 170%;min-height: 100vh;position: absolute;top: -27vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-            transform: scale(.9) translateX(-17vw);}   
+            transform: scale(.9) translateX(-17vw);transform-origin: inherit;}   
         }
         @media (max-width: 841px) and (min-width:661px){
             iframe {width: 170%;min-height: 100vh;position: absolute;top: -28vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-            transform: scale(.9) translateX(-10vw);}
+            transform: scale(.9) translateX(-10vw);transform-origin: inherit;}
         }
         @media (max-width:660px) and (min-width: 597px){
             iframe {width: 170%;min-height: 100vh;position: absolute;top: -33.5vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-            transform: scale(1.05) translateX(1vw);}
+            transform: scale(1.05) translateX(1vw);transform-origin: inherit;}
         }
         @media(max-width:596px) and (min-width:567px){
             iframe {width: 170%;min-height: 100vh;position: absolute;top: -35vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-            transform: scale(1.1) translateX(4vw);}
+            transform: scale(1.1) translateX(4vw);transform-origin: inherit;}
         }
-        @media(max-width:566px) {
+        @media(max-width:566px) and (min-width: 500px) {
             iframe {width: 170%;min-height: 100vh;position: absolute;top: -35.5vw;left: 0px;right: 0px;bottom: 0vh;height:170vh;
-            transform: scale(1.1) translateX(5vw);}
+            transform: scale(1.1) translateX(5vw);transform-origin: inherit;}
         }
     </style>
     <script>
