@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memo : Motd</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,800;1,300;1,600;1,800&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <header>
+        <h4>ENCLAVE — MEMO :</h4>
+        <h1>HTML / DOM básico y modificación del MOTD</h1>
+    </header>
+    <section id="cont">
+        <p>
+            La creación y modificación tanto del MOTD como del diseño del canal requiere un conocimiento extremadamente
+            básico y superficial de HTML, CSS y, para cambios más importantes, del DOM. El presente <i>memo</i> está
+            dirigido a la explicación básica de el uso y la escritura de HTML dentro del contexto del canal para con
+            fines de modificar el MOTD. 
+        </p>
+        <h2 id="html">&#60; <span>HTML</span> &#62;</h2>
+        <p>
+            Para resumir el funcionamiento rápido de como el navegador estructura todo para su renderizado; el navegador
+            toma un documento HTML <span class="note">(o xHTML y técnicamente cualquier otro formato, aunque eso ya está fuera de lo que este
+            doc trata)</span> y lo interpreta siguiendo las reglas de la última especificación, en este caso :
+            <a href="https://html.spec.whatwg.org/"target="_blank">HTML&nbsp;5</a>, construye en memoria un arbol
+            descendente de nodos en donde cada nodo representa, idealmente, un elemento dentro del sitio web.
+        </p>
+        <div class="dualpic">
+        </div>
+        <p>
+            Los nodos en HTML se representan con etiquetas que lucen tal que así :
+        </p>
+        <p class="output_html">
+            <span class="etiqueta">&#60; p &#62;</span> hola
+            <span class="etiqueta2">&#60; input /&#62;</span>
+            <span class="etiqueta">&#60; /p &#62;</span><br>
+            <span class="etiqueta">&#60; p &#62;</span> enclave
+            <span class="etiqueta">&#60; /p &#62;</span>
+        </p>
+        <p>
+            En donde la etiqueta <span class="etiqueta">p</span> indica donde parte el elemento 'p' (paragraph) y
+            la etiqueta <span class="etiqueta">/p</span> indica donde termina. Cada etiqueta/nodo/elemento puede contener
+            dentro de sí ya sea texto u otras etiquetas. Por otra parte, es posible cerrar
+            etiquetas que no tienen contenido usando '/' previo al '&#62;' como es el caso del
+            <span class="etiqueta2">input</span>.
+        </p>
+        <p>
+            El 'código' escrito arriba creará en memoria un arbol similar al siguiente:
+        </p>
+        <div class="sp_p">
+            <div class="output_html left">
+                <span class="grey_small monoline">Document (raíz)</span>
+                <span class="grey_small monoline">├─ Body</span>
+                <span class="ocon monoline">
+                    <span class="grey_small">&nbsp;&nbsp;&nbsp;&nbsp;├─ </span>
+                    <span class="etiqueta">p</span>
+                </span>
+                <span class="ocon monoline">
+                    <span class="grey_small">&nbsp;&nbsp;&nbsp;&nbsp;│</span>
+                    <span class="etiqueta">&nbsp;├─ </span><span>#texto (hola)</span>
+                </span>
+                
+                <span class="ocont monoline">
+                    <span class="grey_small">&nbsp;&nbsp;&nbsp;&nbsp;│</span>
+                    <span class="etiqueta">&nbsp;├─ </span>
+                    <span class="etiqueta2"> input</span>
+                </span>
+                <span class="grey_small monoline">
+                    &nbsp;&nbsp;&nbsp;&nbsp;│
+                </span>
+                <span class="ocon monoline">
+                    <span class="grey_small">&nbsp;&nbsp;&nbsp;&nbsp;├─ </span>
+                    <span class="etiqueta">p</span>
+                </span>
+                
+                <span class="ocon monoline">
+                    <span class="grey_small">&nbsp;&nbsp;&nbsp;&nbsp;│</span>
+                    <span class="etiqueta">&nbsp;├─ </span><span>#texto (enclave)</span>
+                </span>
+            </div>
+            Primero ha de notarse que el documento parte con dos nodos, 'head' y 'body', nodos que no fueron escritos
+            arriba, esto es porque <i>algunos</i> navegadores incluyen estas etiquetas incluso si el usuario no las incluye
+            en su documento, dicho eso, la inclusión de estos tags <span class="underline">no es normativa</span> y de hecho
+            <i>Google</i> recomienda <a href="https://google.github.io/styleguide/htmlcssguide.html#Optional_Tags"
+            target="_blank">omitirlas</a>. <br><br>
+
+            De cualquier manera, no se espera de aquél que manipule el MOTD tenga esto en consideración ya que él solo
+            trabajará dentro de una etiqueta en específico así que ni sé para qué mencioné lo de arriba ;_; .
+        </div>
+        <p>
+            El arbol que arriba se ilustró es además una representación visual de lo que es, esencialmente el DOM
+            <span class="note">( Document Object Model )</span>, la estructura del sitio ordenada.
+        </p>
+        <p>Una vez con el DOM listo, el navegador toma otros documentos como los CSS ya sea insertados en línea
+            <span class="note">( dentro del HTML en el interior de la etiqueta 'style' )</span> o externos,
+            y los procesa bajo una serie de instrucciones que no viene al caso detallar. Para más info sobre este proceso :
+            <a href="https://docs.google.com/presentation/d/1boPxbgNrTU0ddsc144rcXayGA_WF53k96imRH8Mp34Y" target="_blank">estas slides.</a>
+
+        </p>
+        <h2 id="html" style="text-align: right;opacity: .2;">&#60; <span>/HTML</span> &#62;</h2>
+        <h2 class="casos">Casos a considerar : Espaciados</h2>
+        <div class="output_html_double">
+            <div class="ohtml">
+
+                <span class="etiqueta">
+                    &#60;p&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;&#60;button&#62;<span class="greyc">alpha</span>&#60;/button&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;&#60;button&#62;<span class="greyc">beta</span>&#60;/button&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;&#60;button&#62;<span class="greyc">gamma</span>&#60;/button&#62;
+                </span><br>
+                <span class="etiqueta">
+                    &#60;/p&#62;
+                </span>
+
+            </div>
+            <div class="ohtml">
+                <p>
+                    <button>Alpha</button>
+                    <button>Beta</button>
+                    <button>Gamma</button>
+                </p>
+            </div>
+        </div>
+        <p>
+            Pocas cosas son más flexibles que inclinadas a mal-interpretaciones y html/css no es la excepción, uno de los
+            efectos de trabajar interpretando texto <span class="note">( UTF-8/Unicode en este caso )</span> junto con elementos
+            son los problemas a la hora de dejar explícitos ciertos comportamientos. Notese como si bien los 3 botones estan
+            declarados uno despues de el otro aún así se renderizan con un espacio entre medio.
+        </p>
+        <p>Esto sucede porque al ser estos botones <span class="etiqueta3">inline</span> su posición de inserta como si fuese
+        texto, esto significa que el espacio que se usó para <a href="http://firstclassthoughts.co.uk/Articles/Readability/img/i.imgur.com_BtjZedW.jpg" target="_blank" rel="noopener noreferrer">indentarlos</a>
+        ahora se toma como un espacio dentro del texto en vez de un espacio en código, esto (junto con el salto de línea) 
+        generan ese problema.</p>
+        
+        <div class="sp_p">
+            <div class="output_html left">
+                <span class="etiqueta">
+                    &#60;p&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;&#60;button&#62;<span class="greyc">alpha</span>&#60;/button&#62;&#60;button&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;<span class="greyc">beta</span>&#60;/button&#62;&#60;button&#62;
+                </span><br>
+                <span class="etiqueta2">
+                    &nbsp;&nbsp;&nbsp;<span class="greyc">gamma</span>&#60;/button&#62;
+                </span><br>
+                <span class="etiqueta">
+                    &#60;/p&#62;
+                </span>
+            </div>
+        </div>
+        <p>Solucionarlo es tan simple como partir el botón en el mismo momento donde se cerró el anterior.Es horrible en cuanto a legibilidad
+            pero es funcional.
+        </p>
+        <p>Otra posible solución sería poner el texto del &#60;p&#62; como tamaño 0 y sobre-escribirlo para los botones.</p>
+        <h2 class="casos">Casos a considerar : Unicode y HTML entities</h2>
+        <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="" style="width: 100%;margin-bottom: 2vh;">
+        <p>Sanitizar el <i>encoding</i> de texto es una preocupación muy vieja, y un lenguaje moderno como HTML no se escapa de esta consideración.</p>
+        <p>
+            Supongamos que quieres que un párrafo diga "&#60;picture&#62;" por cualquiera sea tu razón. Si tu fueses a escribir eso en un
+            documento HTML, el <i>'parser'</i> interpretaria tu texto como un nodo, e intentaría insertar una imagen en vez de mostrarle
+            ese texto al usuario. Esto puede causar problemas simples como una web mal renderizada o, en casos graves, abrir posibles
+            vectores de ataque como por ejemplo; poder insertar <span class="etiqueta2">embeds</span> o <span class="etiqueta2">scripts</span>
+            para la vista y ejecución de los usuarios.
+        </p>
+        <p>Aquello último por cierto, se llama XSS <span class="note">Cross-Site-Scripting</span>, para observar un ataque XSS simple
+        en acción, <a href="https://www.youtube.com/watch?v=2GtbY1XWGlQ" target="_blank" rel="noopener noreferrer">este video.</a> </p>
+        <p>
+            Para evitar aquellas confusiones, lo que se hace es <i>'escapar'</i> carácteres, cada lenguaje y sistema tiene su propia forma
+            de hacerlo, en html, tenemos las HTML Entities, que son básicamente una notación muy simple para insertar carácteres de diferentes
+            encoding en el código fuente guardando siempre una relación muy fuerte con UTF-8
+            <span class="note">( Unicode 1-4 bytes)</span>.
+        </p>
+        <p>La notación es tal que así  <span class="etiqueta3">&&#35;62&#59;</span> , aquello escrito a la izquierda es un '&#62;'
+            en html entities, el parser de los navegadores convertirán aquel segmento en su carácter equivalente como texto.
+        </p> 
+    </section>
+</body>
+<style>
+    * {padding:0px; margin:0px;
+        font-family: 'Open Sans', sans-serif;}
+    body {background-color:rgb(255, 253, 218);}
+    header {
+        padding-top: 30vh;
+        width: 100%;
+        max-width: 120vh;
+        margin: auto;
+        padding-bottom: 10vh;
+    }
+    header h1, header h4 {
+        font-weight: lighter;
+        text-align: center;
+    }
+    header h1 {font-size: 6vh;}header h4 {font-weight: 400;}
+
+    #cont {
+        background-color: rgba(255, 255, 255, 0.171);
+        width: 100%;max-width: 120vh;
+        margin: auto;
+        min-height: 100vh;
+        padding-bottom: 40vh;
+    }
+    #cont p , .sp_p{
+        padding: 0px 5vh;font-size:2.5vh;padding-bottom: 3vh;
+        font-weight: 400;
+        color: #2c2c2c;
+    }
+    #html {font-size: 2.5vh;color:#686868;padding: 0px 5vh;}#html span {font-size: 3vh;color: #2c2c2c;}
+    .note {font-size:2vh;opacity:.7;font-style: italic;}
+    a{color:#2c2c2c;text-decoration: none;border-bottom: 2px dashed rgb(51, 45, 59);
+    font-weight: 400;}
+    .dualpic {max-width: 100%;}
+    .dualpic img {width:49.9%;}
+    .output_html {background-color: rgba(0, 0, 0, 0.075);padding: 2vh !important;border-radius: 1vh;
+    margin-bottom: 3vh;font-family: monospace;}
+    .output_html * {font-family: monospace;}
+    .etiqueta{color:rgb(253, 108, 108);}
+    .etiqueta2{color:rgb(68, 148, 100);}
+    .etiqueta3{color:rgb(139, 108, 253);}
+
+    .output_html.left {width: 50vh;min-height:10vh;float: left;margin-left: -5vh;margin-bottom: .5vh !important;
+    margin-right: 2vh !important;padding-top: 1.4vh !important;}
+    .sp_p {padding-left: 5vh;}
+
+    .grey_small , .greyc {font-size: 2.5vh; color:#909090;}
+    .monoline {font-size: 2.5vh;display: block;}
+
+    .casos {font-size: 2.5vh;color:#2c2c2c;padding: 0px 5vh;font-weight: 400;text-align: center;
+    margin-bottom: 2vh;}
+    .output_html_double {
+        display: flex;
+        flex-direction: row;
+        min-height: 4vh;
+        width: 100%;
+        border: 2px solid rgba(0, 0, 0, 0.075);
+        border-radius: 1vh;
+        font-family: monospace !important;
+    }
+    .output_html_double * {font-family: monospace !important;font-size: 2.5vh;}
+    .output_html_double .ohtml {
+        min-height: 4vh;
+        width: 50%;
+        padding: 2vh;
+    }
+    .output_html_double .ohtml:first-child {
+        background-color: rgba(0, 0, 0, 0.075);
+        border-radius: 1vh;
+
+    }
+    .show{
+        border-bottom: 2px dashed rgb(47, 44, 90);
+        cursor: pointer;
+    }
+</style>
+</html>
